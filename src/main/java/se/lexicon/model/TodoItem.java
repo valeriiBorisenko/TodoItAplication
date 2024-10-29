@@ -23,17 +23,17 @@ public class TodoItem {
         this.setCreator(creator);
     }
 
-    public TodoItem(String title, String taskDescription, LocalDate deadLine, Person creator) {
+    public TodoItem(String title, LocalDate deadLine, Person creator, String taskDescription) {
         this(title, deadLine, creator);
         this.setTaskDescription(taskDescription);
     }
 
-    public TodoItem(String title, LocalDate deadLine, boolean done, Person creator) {
+    public TodoItem(String title, LocalDate deadLine, Person creator, boolean done) {
         this(title, deadLine, creator);
         this.setDone(done);
     }
 
-    public TodoItem(String title, String taskDescription, LocalDate deadLine, boolean done, Person creator) {
+    public TodoItem(String title, LocalDate deadLine, Person creator, String taskDescription, boolean done) {
         this(title, deadLine, creator);
         this.setTaskDescription(taskDescription);
         this.setDone(done);
@@ -82,7 +82,7 @@ public class TodoItem {
     }
 
     public void setCreator(Person creator) {
-        this.creator = creator;
+        this.creator = Objects.requireNonNull(creator, "Creator should not be null or empty.");
     }
 
     public boolean isOverdue() {

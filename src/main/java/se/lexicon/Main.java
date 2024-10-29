@@ -11,13 +11,19 @@ public class Main {
         Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com");
         System.out.println(samwise.getSummary());
 
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), true, samwise );
-        System.out.println(frodo.getSummary());
+        TodoItem frodoWith = new TodoItem("With Frodo", LocalDate.parse("2024-10-28"), samwise );
+        System.out.println(frodoWith.getSummary());
 
-        TodoItem frodoMountain = new TodoItem("Lift Frodo up the mountain", "Help and check his ring", LocalDate.parse("2024-10-27"), samwise );
+        TodoItem frodoCheck = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise, true );
+        System.out.println(frodoCheck.getSummary());
+
+        TodoItem frodoMountain = new TodoItem("Lift Frodo up the mountain", LocalDate.parse("2024-10-27"), samwise, "Help him to climb" );
         System.out.println(frodoMountain.getSummary());
 
-        TodoItemTask itemTask1 = new TodoItemTask(frodo);
+        TodoItem frodoRing = new TodoItem("Frodo and ring", LocalDate.parse("2024-10-30"), samwise, "Check his ring", true);
+        System.out.println(frodoRing.getSummary());
+
+        TodoItemTask itemTask1 = new TodoItemTask(frodoRing);
         System.out.println(itemTask1.getSummary());
 
         TodoItemTask itemTask2 = new TodoItemTask(frodoMountain, samwise);
