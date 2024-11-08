@@ -10,90 +10,85 @@ import java.time.LocalDate;
 
 public class TodoItemTest {
     AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
-    Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
+    Person person = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
+    TodoItem item = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), person, "Help and check his ring", true );
 
     @Test
     @DisplayName("Create person with valid id")
     public void createPersonValidId() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise );
-        System.out.println(frodo.getId());
+        System.out.println(item.getId());
     }
 
     @Test
     @DisplayName("Create todo item with valid title")
     public void createTodoItemValidTitle() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise );
-        Assertions.assertEquals("Check Frodo", frodo.getTitle());
+        Assertions.assertEquals("Check Frodo", item.getTitle());
     }
 
     @Test
     @DisplayName("Create todo item with invalid title")
     public void createTodoItemInvalidTitle() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            TodoItem frodo = new TodoItem(null, LocalDate.parse("2024-10-29"), samwise );
-            System.out.println(frodo.getTitle());
+            item.setTitle(null);
+            System.out.println(item.getTitle());
         });
     }
 
     @Test
     @DisplayName("Create todo item with valid deadline")
     public void createTodoItemValidDeadline() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise );
-        Assertions.assertEquals(LocalDate.parse("2024-10-29"), frodo.getDeadLine());
+        Assertions.assertEquals(LocalDate.parse("2024-10-29"), item.getDeadLine());
     }
 
     @Test
     @DisplayName("Create todo item with invalid deadline")
     public void createTodoItemInvalidDeadline() {
         Assertions.assertThrows(NullPointerException.class, () -> {
-            TodoItem frodo = new TodoItem("Check Frodo", null, samwise );
-            System.out.println(frodo.getDeadLine());
+            item.setDeadLine(null);
+            System.out.println(item.getDeadLine());
         });
     }
 
     @Test
     @DisplayName("Create todo item with valid creator")
     public void createTodoItemValidCreator() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise );
-        Assertions.assertEquals(samwise, frodo.getCreator());
+
+        Assertions.assertEquals(person, item.getCreator());
     }
 
     @Test
     @DisplayName("Create todo item with invalid creator")
     public void createTodoItemInvalidCreator() {
         Assertions.assertThrows(NullPointerException.class, () -> {
-            TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), null );
-            System.out.println(frodo.getCreator());
+            item.setCreator(null);
+            System.out.println(item.getCreator());
         });
     }
 
     @Test
     @DisplayName("Create todo item with valid done")
     public void createTodoItemValidDone() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise, true );
-        Assertions.assertTrue(frodo.isDone());
+        Assertions.assertTrue(item.isDone());
     }
 
     @Test
     @DisplayName("Create todo item with valid task description")
     public void createTodoItemValidTaskDescription() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise, "Help and check his ring" );
-        Assertions.assertEquals("Check Frodo", frodo.getTitle());
+        Assertions.assertEquals("Check Frodo", item.getTitle());
     }
 
     @Test
     @DisplayName("Create todo item with invalid task description")
     public void createTodoItemInvalidTaskDescription() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-29"), samwise, null );
-            System.out.println(frodo.getTaskDescription());
+            item.setTaskDescription(null);
+            System.out.println(item.getTaskDescription());
         });
     }
 
     @Test
     @DisplayName("Create todo item for check overdue task")
     public void createTodoItemIsOverdueTask() {
-        TodoItem frodo = new TodoItem("Check Frodo", LocalDate.parse("2024-10-27"), samwise );
-        Assertions.assertTrue(frodo.isOverdue());
+        Assertions.assertTrue(item.isOverdue());
     }
 }

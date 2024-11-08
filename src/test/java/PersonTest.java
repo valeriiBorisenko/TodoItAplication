@@ -7,59 +7,56 @@ import se.lexicon.model.Person;
 
 public class PersonTest {
     AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
+    Person person = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
 
     @Test
     @DisplayName("Create person with valid id")
     public void createPersonValidId() {
-        Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
-        System.out.println(samwise.getId());
+        System.out.println(person.getId());
     }
 
     @Test
     @DisplayName("Create person with valid firstname")
     public void createPersonValidFirstName() {
-        Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
-        Assertions.assertEquals("Samwise", samwise.getFirstName());
+        Assertions.assertEquals("Samwise", person.getFirstName());
     }
 
     @Test
     @DisplayName("Create person with invalid firstname")
     public void createPersonInvalidFirstName() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Person samwise = new Person(null, "Gamgee", "samwise.gamgee@lor.com", user);
-            System.out.println(samwise.getFirstName());
+            person.setFirstName(null);
+            System.out.println(person.getFirstName());
         });
     }
 
     @Test
     @DisplayName("Create person with valid lastname")
     public void createPersonValidLastName() {
-        Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
-        Assertions.assertEquals("Gamgee", samwise.getLastName());
+        Assertions.assertEquals("Gamgee", person.getLastName());
     }
 
     @Test
     @DisplayName("Create person with invalid lastname")
     public void createPersonInvalidLastName() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Person samwise = new Person("Samwise", null, "samwise.gamgee@lor.com", user);
-            System.out.println(samwise.getLastName());
+            person.setLastName(null);
+            System.out.println(person.getLastName());
         });
     }
 
     @Test
     @DisplayName("Create person with valid email")
     public void createPersonValidEmail() {
-        Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
-        Assertions.assertEquals("samwise.gamgee@lor.com", samwise.getEmail());
+        Assertions.assertEquals("samwise.gamgee@lor.com", person.getEmail());
     }
 
     @Test
     @DisplayName("Create person with invalid email")
     public void createPersonInvalidEmail() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Person samwise = new Person("Samwise", "Gamgee", null, user);
-            System.out.println(samwise.getEmail());
+            person.setEmail(null);
+            System.out.println(person.getEmail());
         });
     }
 }

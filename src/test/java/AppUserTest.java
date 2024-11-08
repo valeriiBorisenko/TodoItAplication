@@ -5,10 +5,11 @@ import se.lexicon.model.AppRole;
 import se.lexicon.model.AppUser;
 
 public class AppUserTest {
+    AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
+
     @Test
     @DisplayName("Create user with valid userName")
     public void createAppUserValidUserName() {
-        AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
         Assertions.assertEquals("Sam", user.getUsername());
     }
 
@@ -16,7 +17,7 @@ public class AppUserTest {
     @DisplayName("Create user with invalid userName")
     public void createAppUserInvalidUserName() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            AppUser user = new AppUser(null, "q1w2e3r4", AppRole.ROLE_APP_USER);
+            user.setUsername(null);
             System.out.println(user.getUsername());
         });
     }
@@ -24,7 +25,6 @@ public class AppUserTest {
     @Test
     @DisplayName("Create user with valid password")
     public void createAppUserValidPassword() {
-        AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
         Assertions.assertEquals("q1w2e3r4", user.getPassword());
     }
 
@@ -32,7 +32,7 @@ public class AppUserTest {
     @DisplayName("Create user with invalid password")
     public void createAppUserInvalidPassword() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            AppUser user = new AppUser("Sam", null, AppRole.ROLE_APP_USER);
+            user.setPassword(null);
             System.out.println(user.getPassword());
         });
     }
@@ -40,7 +40,6 @@ public class AppUserTest {
     @Test
     @DisplayName("Create user with valid role")
     public void createAppUserValidRole() {
-        AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
         Assertions.assertEquals(AppRole.ROLE_APP_USER, user.getRole());
     }
 
@@ -48,7 +47,7 @@ public class AppUserTest {
     @DisplayName("Create user with invalid role")
     public void createAppUserInvalidRole() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            AppUser user = new AppUser("Sam", "q1w2e3r4", null);
+            user.setRole(null);
             System.out.println(user.getRole());
         });
     }
