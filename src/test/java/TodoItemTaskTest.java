@@ -1,14 +1,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.model.Person;
-import se.lexicon.model.TodoItem;
-import se.lexicon.model.TodoItemTask;
+import se.lexicon.model.*;
 
 import java.time.LocalDate;
 
 public class TodoItemTaskTest {
-    Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com");
+    AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
+    Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
     TodoItem frodoRing = new TodoItem("Frodo and ring", LocalDate.parse("2024-10-30"), samwise, "Check his ring", true);
 
     @Test
@@ -30,7 +29,7 @@ public class TodoItemTaskTest {
     public void createTodoItemInvalidCreator() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             TodoItemTask itemTask1 = new TodoItemTask(null);
-            System.out.println(itemTask1.getTodoItem().getSummary());
+            System.out.println(itemTask1.getTodoItem());
         });
     }
 
@@ -46,7 +45,7 @@ public class TodoItemTaskTest {
     public void createTodoItemInvalidAssignee() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             TodoItemTask itemTask1 = new TodoItemTask(frodoRing, null);
-            System.out.println(itemTask1.getAssignee().getSummary());
+            System.out.println(itemTask1.getAssignee());
         });
     }
 

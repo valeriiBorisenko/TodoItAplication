@@ -1,13 +1,16 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import se.lexicon.model.AppRole;
+import se.lexicon.model.AppUser;
 import se.lexicon.model.Person;
 import se.lexicon.model.TodoItem;
 
 import java.time.LocalDate;
 
 public class TodoItemTest {
-    Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com");
+    AppUser user = new AppUser("Sam", "q1w2e3r4", AppRole.ROLE_APP_USER);
+    Person samwise = new Person("Samwise", "Gamgee", "samwise.gamgee@lor.com", user);
 
     @Test
     @DisplayName("Create person with valid id")

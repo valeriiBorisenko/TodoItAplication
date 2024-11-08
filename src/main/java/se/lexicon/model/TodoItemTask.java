@@ -51,14 +51,24 @@ public class TodoItemTask {
         this.assignee = Objects.requireNonNull(assignee, "Not allowed to be null.");
     }
 
-    public String getSummary() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("id: ").append(id);
-        sb.append(", todo item: ").append(todoItem.getTitle());
-        if (assigned) {
-            sb.append(", assignee: ").append(assignee.getFirstName()).append(" ").append(assignee.getLastName());
-        }
-
+        sb.append("{id: ").append(id).append(", assigned: ").append(assigned).append(", todoItem: ").append(todoItem).append("}");
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, assigned, todoItem);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        TodoItemTask newObj = (TodoItemTask) obj;
+
+        return id == newObj.id && Objects.equals(todoItem, newObj.todoItem) && assigned == newObj.assigned;
     }
 }

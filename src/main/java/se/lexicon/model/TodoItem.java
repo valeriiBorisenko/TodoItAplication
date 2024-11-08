@@ -89,19 +89,28 @@ public class TodoItem {
         return Period.between(deadLine, LocalDate.now()).getDays() > 0;
     }
 
-    public String getSummary() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("id: ").append(id);
-        sb.append(", title: ").append(title);
-        if (taskDescription != null) {
-            sb.append(", description: ").append(taskDescription);
-        }
-        sb.append(", deadline: ").append(deadLine);
-        if (done) {
-            sb.append(", done");
-        }
-        sb.append(", creator: ").append(creator.getFirstName()).append(" ").append(creator.getLastName());
-
+        sb.append("{id: ").append(id)
+                .append(", title: ").append(title)
+                .append(", description: ").append(taskDescription)
+                .append(", deadline: ").append(deadLine)
+                .append(", done: ").append(done).append("}");
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, taskDescription, deadLine, done);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        TodoItem newObj = (TodoItem) obj;
+
+        return id == newObj.id && Objects.equals(title, newObj.title) && Objects.equals(taskDescription, newObj.taskDescription) && Objects.equals(deadLine, newObj.deadLine) && done == newObj.done;
     }
 }
