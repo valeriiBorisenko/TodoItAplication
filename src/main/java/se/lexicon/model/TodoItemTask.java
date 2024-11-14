@@ -1,24 +1,21 @@
 package se.lexicon.model;
 
-import se.lexicon.util.TodoItemTaskIdConstant;
-import se.lexicon.util.TodoItemTaskIdGenerate;
-
 import java.util.Objects;
 
 public class TodoItemTask {
-    private final int id;
+    private int id;
     private boolean assigned;
     private TodoItem todoItem;
     private Person assignee;
 
-    public TodoItemTask(TodoItem todoItem) {
-        this.id = TodoItemTaskIdGenerate.nextId();
-        this.assigned = TodoItemTaskIdConstant.ASSIGNED;
+    public TodoItemTask(int id, TodoItem todoItem) {
+        this.id = id;
+        this.assigned = false;
         this.setTodoItem(todoItem);
     }
 
-    public TodoItemTask(TodoItem todoItem, Person assignee) {
-        this(todoItem);
+    public TodoItemTask(int id, TodoItem todoItem, Person assignee) {
+        this(id, todoItem);
         this.setAssignee(assignee);
         this.setAssigned(assignee);
     }
@@ -53,9 +50,19 @@ public class TodoItemTask {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{id: ").append(id).append(", assigned: ").append(assigned).append(", todoItem: ").append(todoItem).append("}");
-        return sb.toString();
+        return "TodoItemTask{" +
+                "todoItem=" + todoItem +
+                ", assigned=" + assigned +
+                ", id=" + id +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItemTask itemTask = (TodoItemTask) o;
+        return id == itemTask.id && assigned == itemTask.assigned && Objects.equals(todoItem, itemTask.todoItem);
     }
 
     @Override
@@ -63,12 +70,4 @@ public class TodoItemTask {
         return Objects.hash(id, assigned, todoItem);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        TodoItemTask newObj = (TodoItemTask) obj;
-
-        return id == newObj.id && Objects.equals(todoItem, newObj.todoItem) && assigned == newObj.assigned;
-    }
 }

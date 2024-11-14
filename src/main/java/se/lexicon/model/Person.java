@@ -1,18 +1,16 @@
 package se.lexicon.model;
 
-import se.lexicon.util.PersonIdGenerate;
-
 import java.util.Objects;
 
 public class Person {
-    private final int id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
     private AppUser credentials;
 
-    public Person(String firstName, String lastName, String email, AppUser credentials) {
-        this.id = PersonIdGenerate.nextId();
+    public Person(int id, String firstName, String lastName, String email, AppUser credentials) {
+        this.id = id;
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
@@ -61,25 +59,24 @@ public class Person {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{id: ").append(id)
-                .append(", firstName: ").append(firstName)
-                .append(", lastName: ").append(lastName)
-                .append(", email: ").append(email).append("}");
+        return "Person{" +
+                "email='" + email + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", id=" + id +
+                '}';
+    }
 
-        return sb.toString();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(email, person.email);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, email);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Person newObj = (Person) obj;
-        return id == newObj.id && Objects.equals(firstName, newObj.firstName) && Objects.equals(lastName, newObj.lastName) && Objects.equals(email, newObj.email);
     }
 }

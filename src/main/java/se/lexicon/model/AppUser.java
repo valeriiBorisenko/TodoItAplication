@@ -40,6 +40,13 @@ public class AppUser {
         this.role = role;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppUser user = (AppUser) o;
+        return Objects.equals(username, user.username) && role == user.role;
+    }
 
     @Override
     public int hashCode() {
@@ -47,17 +54,10 @@ public class AppUser {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        AppUser newObj = (AppUser) obj;
-        return Objects.equals(username, newObj.username) && role == newObj.role;
-    }
-
-    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{username: ").append(this.username).append(", role: ").append(this.role.getRole()).append("}");
-        return sb.toString();
+        return "AppUser{" +
+                "username='" + username + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
