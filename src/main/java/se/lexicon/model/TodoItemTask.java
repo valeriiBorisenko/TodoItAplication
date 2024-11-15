@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import se.lexicon.data.sequencers.TodoItemIdSequencer;
+
 import java.util.Objects;
 
 public class TodoItemTask {
@@ -15,13 +17,13 @@ public class TodoItemTask {
         this.assigned = false;
     }
 
-    public TodoItemTask(int id, TodoItem todoItem) {
-        this(id);
+    public TodoItemTask(TodoItem todoItem) {
+        this(TodoItemIdSequencer.nextId());
         this.setTodoItem(todoItem);
     }
 
-    public TodoItemTask(int id, TodoItem todoItem, Person assignee) {
-        this(id, todoItem);
+    public TodoItemTask(TodoItem todoItem, Person assignee) {
+        this(todoItem);
         this.setAssignee(assignee);
         this.setAssigned(assignee != null);
     }

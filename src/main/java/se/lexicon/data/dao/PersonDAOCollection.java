@@ -1,7 +1,5 @@
 package se.lexicon.data.dao;
 
-import se.lexicon.data.sequencers.PersonIdSequencer;
-import se.lexicon.model.AppUser;
 import se.lexicon.model.Person;
 
 import java.util.Collection;
@@ -21,10 +19,8 @@ public class PersonDAOCollection implements PersonDAO{
     }
 
     @Override
-    public Person persist(int id, String firstName, String lastName, String email, AppUser credentials) {
-        Person newPerson = new Person(PersonIdSequencer.nextId(), firstName, lastName, email, credentials);
-
-        return persons.add(newPerson) ? newPerson : null;
+    public Person persist(Person person) {
+        return persons.add(person) ? person : null;
     }
 
     @Override

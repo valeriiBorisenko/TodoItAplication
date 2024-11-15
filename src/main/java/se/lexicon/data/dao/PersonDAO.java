@@ -1,12 +1,10 @@
 package se.lexicon.data.dao;
 
-import se.lexicon.model.AppUser;
 import se.lexicon.model.Person;
-
 import java.util.Collection;
 
 public interface PersonDAO {
-    Person persist(int id, String firstName, String lastName, String email, AppUser credentials);
+    Person persist(Person person);
     Person findById(int id);
     Person findByEmail(String email);
     Collection<Person> findByAll();

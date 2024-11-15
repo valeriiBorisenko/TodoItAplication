@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import se.lexicon.data.sequencers.TodoItemIdSequencer;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
@@ -18,26 +20,26 @@ public class TodoItem {
         this.id = id;
     }
 
-    public TodoItem(int id, String title, LocalDate deadLine, Person creator) {
-        this(id);
+    public TodoItem(String title, LocalDate deadLine, Person creator) {
+        this(TodoItemIdSequencer.nextId());
         this.done = false;
         this.setTitle(title);
         this.setDeadLine(deadLine);
         this.setCreator(creator);
     }
 
-    public TodoItem(int id, String title, LocalDate deadLine, Person creator, String taskDescription) {
-        this(id, title, deadLine, creator);
+    public TodoItem(String title, LocalDate deadLine, Person creator, String taskDescription) {
+        this(title, deadLine, creator);
         this.setTaskDescription(taskDescription);
     }
 
-    public TodoItem(int id, String title, LocalDate deadLine, Person creator, boolean done) {
-        this(id, title, deadLine, creator);
+    public TodoItem(String title, LocalDate deadLine, Person creator, boolean done) {
+        this(title, deadLine, creator);
         this.setDone(done);
     }
 
-    public TodoItem(int id, String title, LocalDate deadLine, Person creator, String taskDescription, boolean done) {
-        this(id, title, deadLine, creator);
+    public TodoItem(String title, LocalDate deadLine, Person creator, String taskDescription, boolean done) {
+        this(title, deadLine, creator);
         this.setTaskDescription(taskDescription);
         this.setDone(done);
     }
