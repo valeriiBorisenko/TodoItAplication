@@ -11,8 +11,12 @@ public class TodoItemDAOCollection implements TodoItemDAO{
 
     private Collection<TodoItem> todoItems;
 
+    public TodoItemDAOCollection() {
+        this.todoItems = new HashSet<>();
+    }
+
     public TodoItemDAOCollection(Collection<TodoItem> todoItems) {
-        this.todoItems = todoItems;
+        this.todoItems = new HashSet<>(todoItems);
     }
 
     @Override

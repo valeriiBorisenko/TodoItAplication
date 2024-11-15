@@ -6,13 +6,18 @@ import se.lexicon.model.Person;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class PersonDAOCollection implements PersonDAO{
 
     private Collection<Person> persons;
 
+    public PersonDAOCollection() {
+        this.persons = new HashSet<>();
+    }
+
     public PersonDAOCollection(Collection<Person> persons) {
-        this.persons = persons;
+        this.persons = new HashSet<>(persons);
     }
 
     @Override

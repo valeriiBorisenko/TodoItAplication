@@ -1,26 +1,26 @@
 package se.lexicon.data.dao;
 
-import se.lexicon.data.sequencers.PersonIdSequencer;
-import se.lexicon.model.AppRole;
 import se.lexicon.model.AppUser;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class AppUserDAOCollection implements AppUserDAO {
 
     private Collection<AppUser> users;
 
-    public AppUserDAOCollection(Collection<AppUser> users) {
-        this.users = users;
+    public AppUserDAOCollection() {
+        this.users = new HashSet<>();
     }
 
+    public AppUserDAOCollection(Collection<AppUser> users) {
+        this.users = new HashSet<>(users);
+    }
 
     @Override
-    public AppUser persist(String username, String password, AppRole role) {
-        AppUser newUser = new AppUser(username, password, role);
-
-        return users.add(newUser) ? newUser : null;
+    public AppUser persist(AppUser appUser) {
+        return users.add(appUser) ? appUser : null;
     }
 
     @Override

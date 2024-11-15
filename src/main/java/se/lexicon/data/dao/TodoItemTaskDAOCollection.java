@@ -1,19 +1,21 @@
 package se.lexicon.data.dao;
 
-import se.lexicon.model.TodoItem;
 import se.lexicon.model.TodoItemTask;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 
 public class TodoItemTaskDAOCollection implements TodoItemTaskDAO {
 
     private Collection<TodoItemTask> todoItemTasks;
 
+    public TodoItemTaskDAOCollection() {
+        this.todoItemTasks = new HashSet<>();
+    }
+
     public TodoItemTaskDAOCollection(Collection<TodoItemTask> todoItemTasks) {
-        this.todoItemTasks = todoItemTasks;
+        this.todoItemTasks = new HashSet<>(todoItemTasks);
     }
 
     @Override
