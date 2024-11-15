@@ -12,8 +12,14 @@ public class TodoItem {
     private boolean done;
     private Person creator;
 
-    public TodoItem(int id, String title, LocalDate deadLine, Person creator) {
+    public TodoItem() {}
+
+    public TodoItem(int id) {
         this.id = id;
+    }
+
+    public TodoItem(int id, String title, LocalDate deadLine, Person creator) {
+        this(id);
         this.done = false;
         this.setTitle(title);
         this.setDeadLine(deadLine);

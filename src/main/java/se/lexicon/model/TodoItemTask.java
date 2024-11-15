@@ -8,16 +8,22 @@ public class TodoItemTask {
     private TodoItem todoItem;
     private Person assignee;
 
-    public TodoItemTask(int id, TodoItem todoItem) {
+    public TodoItemTask() {}
+
+    public TodoItemTask(int id) {
         this.id = id;
         this.assigned = false;
+    }
+
+    public TodoItemTask(int id, TodoItem todoItem) {
+        this(id);
         this.setTodoItem(todoItem);
     }
 
     public TodoItemTask(int id, TodoItem todoItem, Person assignee) {
         this(id, todoItem);
         this.setAssignee(assignee);
-        this.setAssigned(assignee);
+        this.setAssigned(assignee != null);
     }
 
     public int getId() {
@@ -28,8 +34,8 @@ public class TodoItemTask {
         return assigned;
     }
 
-    public void setAssigned(Person assignee) {
-        this.assigned = assignee != null;
+    public void setAssigned(boolean assigned) {
+        this.assigned = assigned;
     }
 
     public TodoItem getTodoItem() {
@@ -46,6 +52,7 @@ public class TodoItemTask {
 
     public void setAssignee(Person assignee) {
         this.assignee = Objects.requireNonNull(assignee, "Not allowed to be null.");
+        this.assigned = true;
     }
 
     @Override

@@ -9,6 +9,13 @@ public class Person {
     private String email;
     private AppUser credentials;
 
+    public Person() {
+    }
+
+    public Person(int id) {
+        this.id = id;
+    }
+
     public Person(int id, String firstName, String lastName, String email, AppUser credentials) {
         this.id = id;
         this.setFirstName(firstName);

@@ -7,10 +7,16 @@ public class AppUser {
     private String password;
     private AppRole role;
 
+    public AppUser() {}
+
+    public AppUser(AppRole role) {
+        setRole(role);
+    }
+
     public AppUser(String username, String password, AppRole role) {
+        this(role);
         setUsername(username);
         setPassword(password);
-        setRole(role);
     }
 
     public String getUsername() {
